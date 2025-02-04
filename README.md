@@ -1,7 +1,11 @@
 Read this GOogle SHeet db lets go!
 
 https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
+
+
 https://developers.google.com/sheets/api/guides/values#javascript_2
+
+
 https://stackoverflow.com/questions/19887737/pushing-data-to-google-spreadsheet-through-javascript-running-in-browser
 
 Is ther any way to be able to write database or json or any form of data in github pages even exterior methods
