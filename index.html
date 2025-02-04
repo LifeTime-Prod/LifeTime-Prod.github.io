@@ -14,29 +14,34 @@
 
 <div class="container">
     <div class="sidebar-container"><br>
+
         <div class="sidebar-logo">
             <h1>LifeTime</h1>
         </div>
-        <div class="sidebar-container">
+        <div class="sidebar-items">
         <a href="#" class="sidebar-item">Home</a> 
-        <a href="#services" class="sidebar-item">Services</a> 
-        <a href="#showcase" class="sidebar-item">Showcase</a> 
-        <a href="#designers" class="sidebar-item">Designers</a> 
-        <a href="#packages" class="sidebar-item">Packages</a> 
-        <a href="#contact" class="sidebar-item">Contact</a>
+        <a href="#services" class="sidebar-item">Schedule</a> 
+        <a href="#showcase" class="sidebar-item">Activity List</a> 
+        <a href="#designers" class="sidebar-item">Performance</a> 
+        <a href="#packages" class="sidebar-item">Monthly Review</a> 
+        <a href="#profile" class="sidebar-item">Life Overview</a>
         </div>
     </div>
-    <div class="main_container">
-        <div class="main">
-            <div class="current-week">
-                <div class="week-header">
-                    <h1 style="color: red;"><b>Current Week</b></h1>
-                </div>
-                <div class="week-schedule"></div>
+    <div class="main-container">
+        <div class="current-week">
+            <div class="week-header">
+                <h1 style="color: red;"><b>Current Week</b></h1>
             </div>
-            <hr style="width:100px;border:5px solid red">
-            <div class="health-status">
-                <canvas id="firstChart"></canvas>
+            <div class="week-schedule"></div>
+        </div>
+        <hr style="width:100px;border:5px solid red">
+        <div class="health-status">
+            <div class="health-header">
+                <h1 style="color: red;"><b>Health Status</b></h1>
+            </div>
+            <div class="health-charts">
+                <canvas id="firstChart" style="max-width: 500px;"></canvas>
+                <canvas id="secondChart" style="max-width: 500px;"></canvas>
             </div>
         </div>
     </div>

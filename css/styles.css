@@ -7,13 +7,16 @@ body {
     font-size:16px;
     margin: 0;
     padding: 0;
+
 }
 
 
 .container {
     display: flex;
     flex-direction: row;
+    max-width: 90vw;
 }
+
 
 /* sidebar */
 
@@ -29,8 +32,16 @@ body {
     font-weight: bold;
     box-sizing: inherit;
     z-index: 3;
-    width: 300px;
     background-color: #f54257;
+}
+
+.sidebar-items{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .sidebar-item{
@@ -53,4 +64,35 @@ body {
 
 .main-container {
     width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* week schedule */
+
+.current-week {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.week-schedule {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+/* health */
+
+.health-charts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0;
+    overflow-x: auto;
 }

@@ -1,5 +1,7 @@
 .card{
   padding: 1rem;
+  width: 50%;
+  box-sizing: border-box;
 }
 
 .flip-card {
@@ -8,6 +10,7 @@
     height: 254px;
     perspective: 1000px;
     font-family: sans-serif;
+    box-sizing: border-box;
   }
   
   .title {
@@ -55,13 +58,4 @@
        bisque 40%, rgb(255, 185, 160) 78%);
     color: white;
     transform: rotateY(180deg);
-  }
-
-  /* week schedule */
-
-  .week-schedule{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
   }

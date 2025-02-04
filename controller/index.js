@@ -68,4 +68,16 @@ $(document).ready(function () {
         },
         options: { xValues: barColors }
     });
+
+    new Chart("secondChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+            }]
+        },
+        options: { xValues: barColors }
+    });
 });
