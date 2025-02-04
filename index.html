@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeTime</title>
+<title>LifeTime</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/current-week.css">
+<script src="js/jquery-3.7.1.min.js"></script>
+<script type="module" src="controller/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="nav">
+
+<div class="container">
+    <div class="sidebar-container"><br>
+        <div class="sidebar-logo">
             <h1>LifeTime</h1>
+        </div>
+        <div class="sidebar-container">
+        <a href="#" class="sidebar-item">Home</a> 
+        <a href="#services" class="sidebar-item">Services</a> 
+        <a href="#showcase" class="sidebar-item">Showcase</a> 
+        <a href="#designers" class="sidebar-item">Designers</a> 
+        <a href="#packages" class="sidebar-item">Packages</a> 
+        <a href="#contact" class="sidebar-item">Contact</a>
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="main">
+            <div class="current-week">
+                <div class="week-header">
+                    <h1 style="color: red;"><b>Current Week</b></h1>
+                </div>
+                <div class="week-schedule"></div>
+            </div>
+            <hr style="width:100px;border:5px solid red">
+            <div class="health-status">
+                <canvas id="firstChart"></canvas>
+            </div>
         </div>
     </div>
 </body>
