@@ -33,6 +33,7 @@ body {
     box-sizing: inherit;
     z-index: 3;
     background-color: #f54257;
+    
 }
 
 .sidebar-items{
@@ -42,6 +43,8 @@ body {
     padding: 0;
     margin: 0;
     list-style: none;
+    position: sticky;
+    top: 0;
 }
 
 .sidebar-item{
