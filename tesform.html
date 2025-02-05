@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="gform" method="POST" dta-email="example@gmail.com" 
+    action="https://script.google.com/macros/s/AKfycbw36NXJiggde6yhTEhEzaObXmNxtzLgYlK1oLWVbY8BuJmsEK4OnIItb4fu3WNs-vEvdA/exec">
+
+    <div class="form-elements">
+        <fieldset class="pure-group">
+          <label for="name">Name: </label>
+          <input id="name" name="name" placeholder="What your Mom calls you" />
+        </fieldset>
+  
+        <fieldset class="pure-group">
+          <label for="message">Message: </label>
+          <textarea id="message" name="message" rows="10"
+          placeholder="Tell us what's on your mind..."></textarea>
+        </fieldset>
+
+        <fieldset class="pure-group">
+            <label for="extra">Extra: </label>
+            <textarea id="extra" name="extra" rows="10"
+            placeholder="Tell us what's on your mind..."></textarea>
+          </fieldset>
+  
+        <fieldset class="pure-group">
+          <label for="email"><em>Your</em> Email Address:</label>
+          <input id="email" name="email" type="email" value=""
+          required placeholder="your.name@email.com"/>
+        </fieldset>
+  
+        <fieldset class="pure-group">
+          <label for="color">Favourite Color: </label>
+          <input id="color" name="color" placeholder="green" />
+        </fieldset>
+  
+        <button class="button-success pure-button button-xlarge">
+          <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+      </div>
+  
+      <!-- Customise the Thankyou Message People See when they submit the form: -->
+      <div class="thankyou_message" style="display:none;">
+        <h2><em>Thanks</em> for contacting us!
+          We will get back to you soon!</h2>
+      </div>
+  
+
+    </form>
+</body>
+</html>
