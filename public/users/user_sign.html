@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="signing.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script type="module" src="../controller/firebase_controller.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar-container"><br>
+            <div class="sidebar-logo">
+                <h1>LifeTime</h1>
+            </div>
+            <div class="sidebar-items">
+                <a href="#" class="sidebar-item choose-create-user" style="position: relative;">Register/Login</a>
+                <a href="../index.html" class="sidebar-item">Home</a> 
+                <a href="#services" class="sidebar-item">Schedule</a> 
+                <a href="#showcase" class="sidebar-item">Activity List</a> 
+                <a href="#designers" class="sidebar-item">Performance</a> 
+                <a href="#packages" class="sidebar-item">Monthly Review</a> 
+                <a href="#profile" class="sidebar-item">Life Overview</a>
+            </div>
+        </div>
+
+        <!-- From Uiverse.io by Yaya12085 --> 
+        <div class="form-container">
+            <div class="register">
+                <form class="form" id="registerForm">
+                    <p class="title">Register</p>
+                    <div class="flex">
+                        <label>
+                            <input required="" type="text" class="input" id="r_firstname">
+                            <span>Firstname</span>
+                        </label>
+                        <label>
+                            <input required="" type="text" class="input" id="r_lastname">
+                            <span>Lastname</span>
+                        </label>
+                    </div>
+                    <label>
+                        <input required="" type="email" class="input" id="r_email">
+                        <span>Email</span>
+                    </label>
+                    <label>
+                        <input required="" type="password" class="input" id="r_password">
+                        <span>Password</span>
+                    </label>
+                    <label>
+                        <input required="" type="password" class="input" id="r_cpassword">
+                        <span>Confirm password</span>
+                    </label>
+                    <button class="submit">Submit</button>
+                </form>
+            </div>
+            <div class="login">
+                <form class="form">
+                    <p class="title">Login </p>  
+                    <label>
+                        <input required="" placeholder="" type="email" class="input">
+                        <span>Email</span>
+                    </label> 
+                    <label>
+                        <input required="" placeholder="" type="password" class="input">
+                        <span>Password</span>
+                    </label>
+                    <button class="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
