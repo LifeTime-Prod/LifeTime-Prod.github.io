@@ -4,12 +4,14 @@
 <title>LifeTime</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/current-week.css">
-<script src="js/jquery-3.7.1.min.js"></script>
-<script type="module" src="controller/index.js"></script>
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/current-week.css">
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<script type="module" src="../controller/index.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="model/sheets_db.js"></script>
+<script src="../model/sheets_db.js"></script>
 </head>
 <body>
 
@@ -20,6 +22,7 @@
             <h1>LifeTime</h1>
         </div>
         <div class="sidebar-items">
+        <a href="#user" class="sidebar-item choose-create-user" style="position: relative;">Choose/Create User</a>
         <a href="#" class="sidebar-item">Home</a> 
         <a href="#services" class="sidebar-item">Schedule</a> 
         <a href="#showcase" class="sidebar-item">Activity List</a> 
@@ -71,5 +74,29 @@
         </div>
         <div id="data-container"></div>
     </div>
+</div>
 </body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjjGUoA4uMeNB38N2cHqZ6kRLx5v8SGuI",
+      authDomain: "lifetime-health.firebaseapp.com",
+      projectId: "lifetime-health",
+      storageBucket: "lifetime-health.firebasestorage.app",
+      messagingSenderId: "39657506151",
+      appId: "1:39657506151:web:7df730b9b2eb8800029bc2",
+      measurementId: "G-7HG9PNMYNH"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+</script>
 </html>

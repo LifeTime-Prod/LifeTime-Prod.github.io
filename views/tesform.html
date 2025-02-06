@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script type="module" src="controller/form-handler.js"></script>
 </head>
 <body>
-    <form class="gform" method="POST" dta-email="example@gmail.com" 
-    action="https://script.google.com/macros/s/AKfycbw36NXJiggde6yhTEhEzaObXmNxtzLgYlK1oLWVbY8BuJmsEK4OnIItb4fu3WNs-vEvdA/exec">
-
+    <form class="gform" method="POST" dta-email="example@gmail.com" id="contact-form">
+      <!-- https://script.google.com/macros/s/AKfycbw36NXJiggde6yhTEhEzaObXmNxtzLgYlK1oLWVbY8BuJmsEK4OnIItb4fu3WNs-vEvdA/exec -->
     <div class="form-elements">
         <fieldset class="pure-group">
           <label for="name">Name: </label>
@@ -50,5 +51,6 @@
   
 
     </form>
+    
 </body>
 </html>
