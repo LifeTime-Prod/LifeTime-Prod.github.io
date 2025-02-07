@@ -86,6 +86,10 @@ $(document).ready(function () {
 
     fetchDataFromGoogleSheet();
 
+    $(".dropdown-btn").click(function() {
+        $(".dropdown-content").toggle();
+    });
+
     
 });
 
