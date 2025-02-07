@@ -1,5 +1,6 @@
 import {createWeekScheduleCard} from "../js/week-card.js";
 import { fetchDataFromGoogleSheet } from "../model/sheets_db.js";
+import { auth } from '../js/firebase_init.js'; // Import the initialized auth
 
 let currentWeek = {
     monday: {
@@ -83,4 +84,47 @@ $(document).ready(function () {
     });
 
     fetchDataFromGoogleSheet();
+
+    
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userName = localStorage.getItem('userName');
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("userName:", userName);
+
+    if (isLoggedIn === 'true') {
+        const loginLink = document.querySelector('.choose-create-user');
+        console.log("loginLink:", loginLink);
+        if (loginLink) {
+            loginLink.textContent = `Welcome, ${userName}`;
+            loginLink.href = '#';
+            loginLink.style.pointerEvents = 'none'; // Disable the link
+        }
+
+        // Add the logout button
+        const logoutPlaceholder = document.getElementById('logoutPlaceholder');
+        console.log("logoutPlaceholder:", logoutPlaceholder);
+        if (logoutPlaceholder) {
+            const logoutButton = document.createElement('a');
+            logoutButton.href = '#';
+            logoutButton.className = 'sidebar-item';
+            logoutButton.textContent = 'Logout';
+            logoutButton.addEventListener('click', function() {
+                signOut(auth).then(() => {
+                    // Clear local storage
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userName');
+
+                    alert('User logged out successfully!');
+                    window.location.href = 'index.html';
+                }).catch((error) => {
+                    console.error('Error logging out user:', error);
+                    alert('Error logging out user: ' + error.message);
+                });
+            });
+            logoutPlaceholder.appendChild(logoutButton);
+        }
+    }
 });

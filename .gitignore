@@ -3,5 +3,5 @@
 public/controller/firebase_controller.js
 public/controller/gemini-controller.js
 public/model/firebase_model.js
-
+public/js/firebase_init
 

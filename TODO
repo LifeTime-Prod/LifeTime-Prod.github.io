@@ -1,4 +1,19 @@
-Probably need to make an API to handle things \_o_0_/
-or actually just use the nodejs side to handle it and have it act as an api cause this is 
-really annoying
+An AI should check what the user eat and how much they exercise then suggest
+See their week schedule and suggest
 
+The health status on homepage should show their weight gain, activity burned from this week to previous
+
+hobby should show what they planned for hobby or suggest
+
+Chill Out would suggest movies or things they should see
+
+
+
+
+Schedule would contain every schedule they have for the month and edit them
+
+Activity list would show what activity they finished and planned from schedule
+
+monthly review would show what they did on the month
+
+and life overview would show everything in the year
