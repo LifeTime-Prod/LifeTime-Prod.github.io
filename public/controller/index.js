@@ -1,4 +1,5 @@
 import {createWeekScheduleCard} from "../js/week-card.js";
+import { fetchDataFromGoogleSheet } from "../model/sheets_db.js";
 
 let currentWeek = {
     monday: {
@@ -80,4 +81,6 @@ $(document).ready(function () {
         },
         options: { xValues: barColors }
     });
+
+    fetchDataFromGoogleSheet();
 });
