@@ -100,3 +100,113 @@ body {
     margin: 1rem 0;
     overflow-x: auto;
 }
+
+/* popup */
+
+.page-content {
+    max-width: 700px;
+    font-family: Verdana,sans-serif;
+    margin: 0 auto;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: all 700ms ease;;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+}
+
+.popup-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, calc(-50% + 50px));
+    font-family: Verdana,sans-serif;
+    color: #fff;
+    padding: 12px 0;
+    box-shadow: 0 6px 55px -10px rgba(0, 0, 0, 0.7);
+    background-size: cover;
+    background: #f54257;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: all 700ms ease;
+}
+
+.popup-overlay.active .popup-container {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    pointer-events: auto;
+}   
+
+.popup-container,
+.popup-container *{
+    box-sizing: border-box;
+}
+
+.popup-container .left img {
+    position: absolute;
+    bottom: 0;
+}
+
+.popup-container .left .bg-1 {
+    left: 80px;
+}
+
+.popup-container .left .bg-2 {
+    left: 0px;
+}
+
+.popup-container .right {
+    width: 540px;
+    padding-left: 250px;
+    padding: 16px;
+}
+
+.popup-container .skip-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #fff;
+    color: black;
+    padding: 2px 2px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.popup-container p.logo {
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.popup-container h2.popup-heading {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.popup-container p.description {
+    font-size: 15px;
+    line-height: 1.8;
+}   
+
+.popup-container .getstarted {
+    background: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    padding: 8px 24px;
+    margin-top: 8px;
+    display: inline-block;
+}
