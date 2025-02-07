@@ -1,5 +1,6 @@
 import {createWeekScheduleCard} from "../js/week-card.js";
 import { fetchDataFromGoogleSheet } from "../model/sheets_db.js";
+import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 import { auth } from '../js/firebase_init.js'; // Import the initialized auth
 
 let currentWeek = {
