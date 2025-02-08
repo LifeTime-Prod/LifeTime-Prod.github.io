@@ -17,3 +17,73 @@ Activity list would show what activity they finished and planned from schedule
 monthly review would show what they did on the month
 
 and life overview would show everything in the year
+
+
+
+Tables:
+
+Users: Login information
+User-Schedule: Schedules on months
+User-Activity-List: Every Activity the user did within the schedule
+User-Health-Performance that show's them their weight, height, bmi, risk of sickness depending on their activities and schedules
+Monthly-Review: Takes the activity list and schedule and show the user what they did and show their health performance
+Life Overview: Shows multiple instances of Monthly Review (example: January-December Data)
+
+
+Based on the features you've described, here's a suggested structure for your Firestore database:
+
+Collections:
+
+users: Stores user login information and other relevant details.
+schedules: Stores user schedules, with each document representing a single schedule for a specific month.
+activities: Stores individual activities performed by users, with each document representing a single activity.
+healthPerformances: Stores user health performance data, including weight, height, BMI, and risk of sickness.
+monthlyReviews: Stores monthly review data, which aggregates activity list and schedule data for a specific month.
+lifeOverviews: Stores life overview data, which aggregates multiple monthly reviews.
+Document Structure:
+
+users:
+    uid (string): Unique user ID
+    email (string): User email
+    password (string): User password (hashed)
+    name (string): User name
+schedules:
+    uid (string): User ID ( references the users collection)
+    month (string): Month (e.g., "January")
+    year (number): Year
+    scheduleData (object): Schedule data (e.g., array of dates, events)
+activities:
+    uid (string): User ID (references the users collection)
+    scheduleId (string): Schedule ID (references the schedules collection)
+    activityDate (date): Date of the activity
+    activityType (string): Type of activity (e.g., "running", "swimming")
+    activityData (object): Additional activity data (e.g., duration, distance)
+healthPerformances:
+    uid (string): User ID (references the users collection)
+    scheduleId (string): Schedule ID (references the schedules collection)
+    weight (number): User weight
+    height (number): User height
+    bmi (number): User BMI
+    riskOfSickness (number): Risk of sickness based on activities and schedules
+monthlyReviews:
+    uid (string): User ID (references the users collection)
+    month (string): Month (e.g., "January")
+    year (number): Year
+    activityList (array): List of activities performed during the month
+    scheduleData (object): Schedule data for the month
+    healthPerformance (object): Health performance data for the month
+lifeOverviews:
+    uid (string): User ID (references the users collection)
+    monthlyReviews (array): List of monthly review documents (references the monthlyReviews collection)
+
+
+    
+Relationships:
+
+A user can have multiple schedules (one-to-many).
+A schedule is associated with one user (many-to-one).
+An activity is associated with one user and one schedule (many-to-one).
+A health performance is associated with one user and one schedule (many-to-one).
+A monthly review is associated with one user and one schedule (many-to-one).
+A life overview is associated with one user and multiple monthly reviews (many-to-many).
+This structure should allow you to efficiently store and retrieve data for each feature. However, feel free to adjust it based on your specific requirements and performance needs.
