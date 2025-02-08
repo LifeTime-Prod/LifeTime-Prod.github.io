@@ -1,66 +1,3 @@
-// import { addHealthData, getHealthData, updateHealthData, deleteHealthData, checkHealthDataExists } from '../model/firestore_model.js';
-// import { auth } from '../js/firebase_init.js'; // Import the initialized auth
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     auth.onAuthStateChanged(async (user) => {
-//         if (!user) {
-//             console.error('User is not authenticated');
-//             return;
-//         }
-
-//         const userId = user.uid;
-//  // Check if health data exists
-//  const exists = await checkHealthDataExists(userId);
-//  console.log('Health data exists:', exists);
-
-//  if (!exists) {
-//      // Add health data if it does not exist
-//      const healthData = {
-//          height: 180,
-//          weight: 75
-//      };
-
-//      try {
-//          await addHealthData(userId, healthData);
-//          console.log('Health data added successfully');
-//      } catch (error) {
-//          console.error('Error adding health data:', error);
-//      }
-//  } else {
-//      // Perform other operations if health data exists
-
-//      // Example usage: Get health data for a user
-//      try {
-//          const data = await getHealthData(userId);
-//          console.log('Health data:', data);
-//      } catch (error) {
-//          console.error('Error getting health data:', error);
-//      }
-
-//      // Example usage: Update health data for a user
-//      const updatedHealthData = {
-//          height: 185,
-//          weight: 80
-//      };
-
-//      try {
-//          await updateHealthData(userId, updatedHealthData);
-//          console.log('Health data updated successfully');
-//      } catch (error) {
-//          console.error('Error updating health data:', error);
-//      }
-
-//     //  Example usage: Delete health data for a user
-//      try {
-//          await deleteHealthData(userId);
-//          console.log('Health data deleted successfully');
-//      } catch (error) {
-//          console.error('Error deleting health data:', error);
-//      }
-//  }
-// });
-// });
-
 import { auth } from '../js/firebase_init.js'; // Import the initialized auth
 import * as firestoreModel from '../model/firestore_model.js';
 
@@ -72,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const userId = user.uid;
-        // Example usage: Add a schedule
+
+        // Example usage: Add or update a schedule
         const scheduleId = `${userId}_January_2025`;
         const newSchedule = {
             uid: userId,
@@ -82,13 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            await firestoreModel.addSchedule(scheduleId, newSchedule);
-            console.log('Schedule added successfully');
+            const existingSchedule = await firestoreModel.getSchedule(scheduleId);
+            if (existingSchedule) {
+                await firestoreModel.updateSchedule(scheduleId, newSchedule);
+                console.log('Schedule updated successfully');
+            } else {
+                await firestoreModel.addSchedule(scheduleId, newSchedule);
+                console.log('Schedule added successfully');
+            }
         } catch (error) {
-            console.error('Error adding schedule:', error);
+            console.error('Error adding or updating schedule:', error);
         }
 
-        // Example usage: Add an activity
+        // Example usage: Add or update an activity
         const activityId = `${userId}_activity_1`;
         const newActivity = {
             uid: userId,
@@ -99,13 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            await firestoreModel.addActivity(activityId, newActivity);
-            console.log('Activity added successfully');
+            const existingActivity = await firestoreModel.getActivity(activityId);
+            if (existingActivity) {
+                await firestoreModel.updateActivity(activityId, newActivity);
+                console.log('Activity updated successfully');
+            } else {
+                await firestoreModel.addActivity(activityId, newActivity);
+                console.log('Activity added successfully');
+            }
         } catch (error) {
-            console.error('Error adding activity:', error);
+            console.error('Error adding or updating activity:', error);
         }
 
-        // Example usage: Add health performance
+        // Example usage: Add or update health performance
         const healthPerformanceId = `${userId}_health_1`;
         const newHealthPerformance = {
             uid: userId,
@@ -117,13 +67,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            await firestoreModel.addHealthPerformance(healthPerformanceId, newHealthPerformance);
-            console.log('Health performance added successfully');
+            const existingHealthPerformance = await firestoreModel.getHealthPerformance(healthPerformanceId);
+            if (existingHealthPerformance) {
+                await firestoreModel.updateHealthPerformance(healthPerformanceId, newHealthPerformance);
+                console.log('Health performance updated successfully');
+            } else {
+                await firestoreModel.addHealthPerformance(healthPerformanceId, newHealthPerformance);
+                console.log('Health performance added successfully');
+            }
         } catch (error) {
-            console.error('Error adding health performance:', error);
+            console.error('Error adding or updating health performance:', error);
         }
 
-        // Example usage: Add a monthly review
+        // Example usage: Add or update a monthly review
         const monthlyReviewId = `${userId}_review_January_2025`;
         const newMonthlyReview = {
             uid: userId,
@@ -135,13 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            await firestoreModel.addMonthlyReview(monthlyReviewId, newMonthlyReview);
-            console.log('Monthly review added successfully');
+            const existingMonthlyReview = await firestoreModel.getMonthlyReview(monthlyReviewId);
+            if (existingMonthlyReview) {
+                await firestoreModel.updateMonthlyReview(monthlyReviewId, newMonthlyReview);
+                console.log('Monthly review updated successfully');
+            } else {
+                await firestoreModel.addMonthlyReview(monthlyReviewId, newMonthlyReview);
+                console.log('Monthly review added successfully');
+            }
         } catch (error) {
-            console.error('Error adding monthly review:', error);
+            console.error('Error adding or updating monthly review:', error);
         }
 
-        // Example usage: Add a life overview
+        // Example usage: Add or update a life overview
         const lifeOverviewId = `${userId}_overview`;
         const newLifeOverview = {
             uid: userId,
@@ -149,10 +111,110 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            await firestoreModel.addLifeOverview(lifeOverviewId, newLifeOverview);
-            console.log('Life overview added successfully');
+            const existingLifeOverview = await firestoreModel.getLifeOverview(lifeOverviewId);
+            if (existingLifeOverview) {
+                await firestoreModel.updateLifeOverview(lifeOverviewId, newLifeOverview);
+                console.log('Life overview updated successfully');
+            } else {
+                await firestoreModel.addLifeOverview(lifeOverviewId, newLifeOverview);
+                console.log('Life overview added successfully');
+            }
         } catch (error) {
-            console.error('Error adding life overview:', error);
+            console.error('Error adding or updating life overview:', error);
         }
     });
+
+    // Render and Fetch
+    renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId);
+   
 });
+
+
+async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId) {
+    try {
+        const fetchedSchedule = await firestoreModel.getSchedule(scheduleId);
+        if (fetchedSchedule) {
+            renderSchedule(fetchedSchedule);
+        }
+
+        const fetchedActivity = await firestoreModel.getActivity(activityId);
+        if (fetchedActivity) {
+            renderActivity(fetchedActivity);
+        }
+
+        const fetchedHealthPerformance = await firestoreModel.getHealthPerformance(healthPerformanceId);
+        if (fetchedHealthPerformance) {
+            renderHealthPerformance(fetchedHealthPerformance);
+        }
+
+        const fetchedMonthlyReview = await firestoreModel.getMonthlyReview(monthlyReviewId);
+        if (fetchedMonthlyReview) {
+            renderMonthlyReview(fetchedMonthlyReview);
+        }
+
+        const fetchedLifeOverview = await firestoreModel.getLifeOverview(lifeOverviewId);
+        if (fetchedLifeOverview) {
+            renderLifeOverview(fetchedLifeOverview);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
+// Render functions
+function renderSchedule(schedule) {
+    const scheduleContainer = document.querySelector('.schedule-container');
+    if (scheduleContainer) {
+        scheduleContainer.innerHTML = `
+            <h2>Schedule for ${schedule.month} ${schedule.year}</h2>
+            <pre>${JSON.stringify(schedule.scheduleData, null, 2)}</pre>
+        `;
+    }
+}
+
+function renderActivity(activity) {
+    const activityContainer = document.querySelector('.activity-container');
+    if (activityContainer) {
+        activityContainer.innerHTML = `
+            <h2>Activity on ${activity.activityDate.toDateString()}</h2>
+            <p>Type: ${activity.activityType}</p>
+            <pre>${JSON.stringify(activity.activityData, null, 2)}</pre>
+        `;
+    }
+}
+
+function renderHealthPerformance(healthPerformance) {
+    const healthPerformanceContainer = document.querySelector('.health-performance-container');
+    if (healthPerformanceContainer) {
+        healthPerformanceContainer.innerHTML = `
+            <h2>Health Performance</h2>
+            <p>Weight: ${healthPerformance.weight} kg</p>
+            <p>Height: ${healthPerformance.height} cm</p>
+            <p>BMI: ${healthPerformance.bmi}</p>
+            <p>Risk of Sickness: ${healthPerformance.riskOfSickness}</p>
+        `;
+    }
+}
+
+function renderMonthlyReview(monthlyReview) {
+    const monthlyReviewContainer = document.querySelector('.monthly-review-container');
+    if (monthlyReviewContainer) {
+        monthlyReviewContainer.innerHTML = `
+            <h2>Monthly Review for ${monthlyReview.month} ${monthlyReview.year}</h2>
+            <pre>${JSON.stringify(monthlyReview.activityList, null, 2)}</pre>
+            <pre>${JSON.stringify(monthlyReview.scheduleData, null, 2)}</pre>
+            <pre>${JSON.stringify(monthlyReview.healthPerformance, null, 2)}</pre>
+        `;
+    }
+}
+
+function renderLifeOverview(lifeOverview) {
+    const lifeOverviewContainer = document.querySelector('.life-overview-container');
+    if (lifeOverviewContainer) {
+        lifeOverviewContainer.innerHTML = `
+            <h2>Life Overview</h2>
+            <pre>${JSON.stringify(lifeOverview.monthlyReviews, null, 2)}</pre>
+        `;
+    }
+}
