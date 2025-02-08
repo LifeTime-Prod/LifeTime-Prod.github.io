@@ -53,7 +53,7 @@ $(document).ready(function () {
     for (let day in currentWeek) {
         let card = createWeekScheduleCard(currentWeek[day].title, currentWeek[day].text, currentWeek[day].back_title, currentWeek[day].back_text);
         $(".week-schedule").append(card);
-        console.log(day)
+        // console.log(day)
     }
 
     const xValues = ["Weight", "Height", "Something", "Here", "Check"];

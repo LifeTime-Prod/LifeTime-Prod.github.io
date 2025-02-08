@@ -1,7 +1,9 @@
 import { auth } from '../js/firebase_init.js'; // Import the initialized auth
+import { getCurrentWeekSchedule } from '../js/week-card.js';
 import * as firestoreModel from '../model/firestore_model.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded event triggered');
     auth.onAuthStateChanged(async (user) => {
         if (!user) {
             console.error('User is not authenticated');
@@ -122,15 +124,17 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error adding or updating life overview:', error);
         }
-    });
 
-    // Render and Fetch
-    renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId);
+         // Render and Fetch
+        console.log('Rendering data...');
+
+        renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId);
    
+    });
 });
 
 
-async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId) {
+async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId) {
     try {
         const fetchedSchedule = await firestoreModel.getSchedule(scheduleId);
         if (fetchedSchedule) {
@@ -156,6 +160,10 @@ async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyR
         if (fetchedLifeOverview) {
             renderLifeOverview(fetchedLifeOverview);
         }
+
+        const currentWeekSchedule = await getCurrentWeekSchedule(userId);
+        renderCurrentWeekSchedule(currentWeekSchedule);
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -176,8 +184,9 @@ function renderSchedule(schedule) {
 function renderActivity(activity) {
     const activityContainer = document.querySelector('.activity-container');
     if (activityContainer) {
+        const activityDate = activity.activityDate.toDate ? activity.activityDate.toDate() : new Date(activity.activityDate);
         activityContainer.innerHTML = `
-            <h2>Activity on ${activity.activityDate.toDateString()}</h2>
+            <h2>Activity on ${activityDate.toDateString()}</h2>
             <p>Type: ${activity.activityType}</p>
             <pre>${JSON.stringify(activity.activityData, null, 2)}</pre>
         `;
@@ -215,6 +224,16 @@ function renderLifeOverview(lifeOverview) {
         lifeOverviewContainer.innerHTML = `
             <h2>Life Overview</h2>
             <pre>${JSON.stringify(lifeOverview.monthlyReviews, null, 2)}</pre>
+        `;
+    }
+}
+
+function renderCurrentWeekSchedule(currentWeekSchedule) {
+    const weekScheduleContainer = document.querySelector('.week-schedule-container');
+    if (weekScheduleContainer) {
+        weekScheduleContainer.innerHTML = `
+            <h2>Current Week Schedule</h2>
+            <pre>${JSON.stringify(currentWeekSchedule, null, 2)}</pre>
         `;
     }
 }
