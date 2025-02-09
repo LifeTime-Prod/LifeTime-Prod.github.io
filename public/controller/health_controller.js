@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const userId = user.uid;
+        const year = 2025;
+        const month = 0; // January (0-based index for months)
+    
+
+        const monthDates = generateMonthDates(year, month);
 
         // Example usage: Add or update a schedule
         const scheduleId = `${userId}_January_2025`;
@@ -18,7 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
             uid: userId,
             month: 'January',
             year: 2025,
-            scheduleData: { events: [] }
+            scheduleData: { 
+                events: [
+                    { date: monthDates[0], title: 'Workout', description: 'Running 30 minutes' },
+                    { date: monthDates[1], title: 'Meeting', description: 'Discuss project progress' }
+                ],
+                dates: monthDates
+            }
         };
 
         try {
@@ -161,6 +172,7 @@ async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyR
             renderLifeOverview(fetchedLifeOverview);
         }
 
+        console.log('Fetching current week schedule...');
         const currentWeekSchedule = await getCurrentWeekSchedule(userId);
         renderCurrentWeekSchedule(currentWeekSchedule);
 
@@ -174,9 +186,19 @@ async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyR
 function renderSchedule(schedule) {
     const scheduleContainer = document.querySelector('.schedule-container');
     if (scheduleContainer) {
+        // Convert dates in the scheduleData to a readable format
+        const formattedScheduleData = {
+            ...schedule.scheduleData,
+            events: schedule.scheduleData.events.map(event => ({
+                ...event,
+                date: event.date.toDate ? event.date.toDate().toDateString() : new Date(event.date).toDateString()
+            })),
+            dates: schedule.scheduleData.dates.map(date => date.toDate ? date.toDate().toDateString() : new Date(date).toDateString())
+        };
+
         scheduleContainer.innerHTML = `
             <h2>Schedule for ${schedule.month} ${schedule.year}</h2>
-            <pre>${JSON.stringify(schedule.scheduleData, null, 2)}</pre>
+            <pre>${JSON.stringify(formattedScheduleData, null, 2)}</pre>
         `;
     }
 }
@@ -236,4 +258,14 @@ function renderCurrentWeekSchedule(currentWeekSchedule) {
             <pre>${JSON.stringify(currentWeekSchedule, null, 2)}</pre>
         `;
     }
+}
+
+function generateMonthDates(year, month) {
+    const dates = [];
+    const date = new Date(year, month, 1);
+    while (date.getMonth() === month) {
+        dates.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+    }
+    return dates;
 }
