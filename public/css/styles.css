@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    font-size:16px;
+    font-size: 1em;
     margin: 0;
     padding: 0;
 
@@ -33,7 +33,7 @@ body {
     -webkit-text-size-adjust: 100%;
     font-family: Verdana,sans-serif;
     line-height: 1.5;
-    font-size: 18px!important;
+    font-size: 1.5rem!important;
     color: #fff!important;
     font-weight: bold;
     box-sizing: inherit;
@@ -232,7 +232,7 @@ body {
 
     
     .burger-icon {
-        font-size: 24px;
+        font-size: 2em;
         margin-right: 10px;
     }
 
@@ -374,7 +374,7 @@ body {
 
     
     .burger-icon {
-        font-size: 24px;
+        font-size: 2em;
         margin-right: 10px;
     }
 
