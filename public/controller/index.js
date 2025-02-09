@@ -71,33 +71,46 @@ $(document).ready(function () {
     //     $(".week-schedule").append(card);
     // }
 
-    const xValues = ["Weight", "Height", "Something", "Here", "Check"];
-    const yValues = [55, 49, 44, 24, 15];
-    const barColors = ["red", "green","blue","orange","brown"];
+    const xValues = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const yValues = ["10kg", "11kg", "12kg", "13kg", "14kg", "15kg", "16kg"];
 
     new Chart("firstChart", {
-        type: "bar",
-        data: {
+    type: "line",
+    data: {
             labels: xValues,
             datasets: [{
-            backgroundColor: barColors,
-            data: yValues
+                fill: false,
+                backgroundColor:"rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: yValues
             }]
         },
-        options: { xValues: barColors }
+        options:{ 
+            legend: {display: false},
+            scales: {
+            yAxes: [{ticks: {min: 6, max:16}}],
+            }
+        }
     });
 
     new Chart("secondChart", {
-        type: "bar",
+        type: "line",
         data: {
-            labels: xValues,
-            datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-            }]
-        },
-        options: { xValues: barColors }
-    });
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    backgroundColor:"rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options:{ 
+                legend: {display: false},
+                scales: {
+                yAxes: [{ticks: {min: 6, max:16}}],
+                }
+            }
+        });
 
     fetchDataFromGoogleSheet();
 

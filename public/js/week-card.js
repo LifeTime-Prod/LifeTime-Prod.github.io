@@ -88,10 +88,25 @@ export async function getCurrentWeekSchedule(userId) {
     console.log('Date range:', firstDayOfWeek, 'to', lastDayOfWeek);
 
     const schedulesRef = collection(firestore, 'schedules');
-    const scheduleDocRef = doc(schedulesRef, userId);
+    const scheduleDocRef = doc(schedulesRef, userId); // this works
     getDoc(scheduleDocRef).then((doc) => {
-      console.log(doc.data());
-    });
+        console.log('Schedule document data:', doc.data());
+        const scheduleData = doc.data();
+        if (scheduleData && scheduleData.scheduleData && scheduleData.scheduleData.events) {
+            scheduleData.scheduleData.events.forEach((event) => {
+            const eventDate = event.date.toDate();
+            if (eventDate >= firstDayOfWeek && eventDate <= lastDayOfWeek) {
+                const dayOfWeek = eventDate.toLocaleString('en-US', { weekday: 'long' }).toLowerCase();
+                if (!currentWeek[dayOfWeek]) {
+                currentWeek[dayOfWeek] = [];
+                }
+                currentWeek[dayOfWeek].push(event);
+            }
+            });
+        }
+        });
+
+    return currentWeek;
 
     // try {
     //     const querySnapshot = await getDocs(q);
