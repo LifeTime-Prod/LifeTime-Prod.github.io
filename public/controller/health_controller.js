@@ -11,14 +11,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const userId = user.uid;
+         // Get the current date
+         const currentDate = new Date();
+         const year = currentDate.getFullYear();
+         const month = currentDate.getMonth(); // 0-based index for months
+         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
+                             "September", "October", "November", "December"];
+         const monthName = monthNames[month];
+
+        const monthDates = generateMonthDates(year, month);
 
         // Example usage: Add or update a schedule
-        const scheduleId = `${userId}_January_2025`;
+        const scheduleId = `${userId}_${monthName}_${year}`;
         const newSchedule = {
             uid: userId,
-            month: 'January',
-            year: 2025,
-            scheduleData: { events: [] }
+            month: monthName,
+            year: year,
+            scheduleData: { 
+                events: [
+                    { date: monthDates[0], title: 'Workout', description: 'Running 30 minutes' },
+                    { date: monthDates[1], title: 'Meeting', description: 'Discuss project progress' }
+                ],
+                dates: monthDates
+            }
         };
 
         try {
@@ -128,13 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
          // Render and Fetch
         console.log('Rendering data...');
 
-        renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId);
+        renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId, monthName, year);
    
     });
 });
 
 
-async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId) {
+async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyReviewId, lifeOverviewId, userId, monthName, year) {
     try {
         const fetchedSchedule = await firestoreModel.getSchedule(scheduleId);
         if (fetchedSchedule) {
@@ -161,7 +176,9 @@ async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyR
             renderLifeOverview(fetchedLifeOverview);
         }
 
-        const currentWeekSchedule = await getCurrentWeekSchedule(userId);
+        console.log('Fetching current week schedule...');
+        const currentWeekSchedule = await getCurrentWeekSchedule(`${userId}_${monthName}_${year}`);
+        console.log(`${userId}_${monthName}_${year}`)
         renderCurrentWeekSchedule(currentWeekSchedule);
 
     } catch (error) {
@@ -171,12 +188,23 @@ async function renderDatas(scheduleId, activityId, healthPerformanceId, monthlyR
 
 
 // Render functions
+
 function renderSchedule(schedule) {
     const scheduleContainer = document.querySelector('.schedule-container');
     if (scheduleContainer) {
+        // Convert dates in the scheduleData to a readable format
+        const formattedScheduleData = {
+            ...schedule.scheduleData,
+            events: schedule.scheduleData.events.map(event => ({
+                ...event,
+                date: event.date.toDate ? event.date.toDate().toDateString() : new Date(event.date).toDateString()
+            })),
+            dates: schedule.scheduleData.dates.map(date => date.toDate ? date.toDate().toDateString() : new Date(date).toDateString())
+        };
+
         scheduleContainer.innerHTML = `
             <h2>Schedule for ${schedule.month} ${schedule.year}</h2>
-            <pre>${JSON.stringify(schedule.scheduleData, null, 2)}</pre>
+            <pre>${JSON.stringify(formattedScheduleData, null, 2)}</pre>
         `;
     }
 }
@@ -209,12 +237,27 @@ function renderHealthPerformance(healthPerformance) {
 function renderMonthlyReview(monthlyReview) {
     const monthlyReviewContainer = document.querySelector('.monthly-review-container');
     if (monthlyReviewContainer) {
+        const formattedActivityList = monthlyReview.activityList.map(activity => ({
+            ...activity,
+            activityDate: activity.activityDate.toDate ? activity.activityDate.toDate().toDateString() : new Date(activity.activityDate).toDateString()
+        }));
+
+        const formattedScheduleData = {
+            ...monthlyReview.scheduleData,
+            events: monthlyReview.scheduleData.events.map(event => ({
+                ...event,
+                date: event.date.toDate ? event.date.toDate().toDateString() : new Date(event.date).toDateString()
+            })),
+            dates: monthlyReview.scheduleData.dates.map(date => date.toDate ? date.toDate().toDateString() : new Date(date).toDateString())
+        };
+
         monthlyReviewContainer.innerHTML = `
             <h2>Monthly Review for ${monthlyReview.month} ${monthlyReview.year}</h2>
-            <pre>${JSON.stringify(monthlyReview.activityList, null, 2)}</pre>
-            <pre>${JSON.stringify(monthlyReview.scheduleData, null, 2)}</pre>
+            <pre>${JSON.stringify(formattedActivityList, null, 2)}</pre>
+            <pre>${JSON.stringify(formattedScheduleData, null, 2)}</pre>
             <pre>${JSON.stringify(monthlyReview.healthPerformance, null, 2)}</pre>
         `;
+
     }
 }
 
@@ -230,10 +273,24 @@ function renderLifeOverview(lifeOverview) {
 
 function renderCurrentWeekSchedule(currentWeekSchedule) {
     const weekScheduleContainer = document.querySelector('.week-schedule-container');
+    console.log('currentWeekSchedule', currentWeekSchedule);
     if (weekScheduleContainer) {
         weekScheduleContainer.innerHTML = `
             <h2>Current Week Schedule</h2>
             <pre>${JSON.stringify(currentWeekSchedule, null, 2)}</pre>
         `;
     }
+}
+
+
+// Helper functions
+
+function generateMonthDates(year, month) {
+    const dates = [];
+    const date = new Date(year, month, 1);
+    while (date.getMonth() === month) {
+        dates.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+    }
+    return dates;
 }
