@@ -56,6 +56,21 @@ $(document).ready(function () {
         // console.log(day)
     }
 
+    // const userId = 'uvMsBkcZjWYIxQHM6eRl30hZaNy2'; // Replace with actual user ID
+    // const weekSchedule = await getCurrentWeekSchedule(userId);
+
+    // for (const [day, events] of Object.entries(weekSchedule)) {
+    //     let frontText = '';
+    //     let backText = '';
+    //     events.forEach(event => {
+    //         frontText += `${event.title}\n`;
+    //         backText += `${event.title}: ${event.description}\n`;
+    //     });
+        
+    //     let card = createWeekScheduleCard(day.charAt(0).toUpperCase() + day.slice(1), frontText, day.charAt(0).toUpperCase() + day.slice(1), backText);
+    //     $(".week-schedule").append(card);
+    // }
+
     const xValues = ["Weight", "Height", "Something", "Here", "Check"];
     const yValues = [55, 49, 44, 24, 15];
     const barColors = ["red", "green","blue","orange","brown"];
