@@ -53,23 +53,8 @@ $(document).ready(function () {
     for (let day in currentWeek) {
         let card = createWeekScheduleCard(currentWeek[day].title, currentWeek[day].text, currentWeek[day].back_title, currentWeek[day].back_text);
         $(".week-schedule").append(card);
-        // console.log(day)
+        console.log(day)
     }
-
-    // const userId = 'uvMsBkcZjWYIxQHM6eRl30hZaNy2'; // Replace with actual user ID
-    // const weekSchedule = await getCurrentWeekSchedule(userId);
-
-    // for (const [day, events] of Object.entries(weekSchedule)) {
-    //     let frontText = '';
-    //     let backText = '';
-    //     events.forEach(event => {
-    //         frontText += `${event.title}\n`;
-    //         backText += `${event.title}: ${event.description}\n`;
-    //     });
-        
-    //     let card = createWeekScheduleCard(day.charAt(0).toUpperCase() + day.slice(1), frontText, day.charAt(0).toUpperCase() + day.slice(1), backText);
-    //     $(".week-schedule").append(card);
-    // }
 
     const xValues = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const yValues = ["10kg", "11kg", "12kg", "13kg", "14kg", "15kg", "16kg"];
@@ -86,7 +71,7 @@ $(document).ready(function () {
             }]
         },
         options:{ 
-            legend: {display: false},
+            legend: {display: true},
             scales: {
             yAxes: [{ticks: {min: 6, max:16}}],
             }
@@ -105,7 +90,7 @@ $(document).ready(function () {
                 }]
             },
             options:{ 
-                legend: {display: false},
+                legend: {display: true},
                 scales: {
                 yAxes: [{ticks: {min: 6, max:16}}],
                 }

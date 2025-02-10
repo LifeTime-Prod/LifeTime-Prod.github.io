@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="signing.css">
     <script src="../js/jquery-3.7.1.min.js"></script>
@@ -19,13 +20,19 @@
                 <h1>LifeTime</h1>
             </div>
             <div class="sidebar-items">
-                <a href="#" class="sidebar-item choose-create-user" style="position: relative;">Register/Login</a>
-                <a href="../index.html" class="sidebar-item">Home</a> 
-                <a href="#services" class="sidebar-item">Schedule</a> 
-                <a href="#showcase" class="sidebar-item">Activity List</a> 
-                <a href="#designers" class="sidebar-item">Performance</a> 
-                <a href="#packages" class="sidebar-item">Monthly Review</a> 
-                <a href="#profile" class="sidebar-item">Life Overview</a>
+                <button class="dropdown-btn">
+                    <span class="burger-icon">&#9776;Menu</span> 
+                </button>
+                <div class="dropdown-content sidebar-items">
+                    <a href="users/user_sign.html" class="sidebar-item choose-create-user" style="position: relative;">Register/Login</a>
+                    <a href="../index.html" class="sidebar-item">Home</a> 
+                    <a href="#services" class="sidebar-item">Schedule</a> 
+                    <a href="#showcase" class="sidebar-item">Activity List</a> 
+                    <a href="#designers" class="sidebar-item">Performance</a> 
+                    <a href="#packages" class="sidebar-item">Monthly Review</a> 
+                    <a href="#profile" class="sidebar-item">Life Overview</a>
+                    <div id="logoutPlaceholder"></div>
+                </div>
             </div>
         </div>
 
@@ -74,7 +81,46 @@
                 </form>
             </div>
         </div>
-
     </div>
+        <!-- Login Success Popup -->
+        <div class="popup-overlay" id="loginSuccessPopup">
+            <div class="popup-container">
+                <div class="right">
+                    <div class="skip-button" onclick="closePopup('loginSuccessPopup')">x</div>
+                    <p class="logo">LifeTime</p>
+                    <h2 class="popup-heading">Login Successful</h2>
+                    <p class="description">
+                        Welcome back! You have successfully logged in.
+                    </p>
+                    <a href="../index.html" class="getstarted">Go to Dashboard</a>
+                </div>
+            </div>   
+        </div>
+    
+        <!-- Register Success Popup -->
+        <div class="popup-overlay" id="registerSuccessPopup">
+            <div class="popup-container">
+                <div class="right">
+                    <div class="skip-button" onclick="closePopup('registerSuccessPopup')">x</div>
+                    <p class="logo">LifeTime</p>
+                    <h2 class="popup-heading">Registration Successful</h2>
+                    <p class="description">
+                        Welcome to LifeTime! Your account has been created successfully.
+                    </p>
+                    <a href="../views/interviewer.html" class="getstarted">Get Started</a>
+                </div>
+            </div>   
+        </div>
+    
+        <script>
+            function showPopup(popupId) {
+                console.log(popupId);
+                document.getElementById(popupId).classList.add('active');
+            }
+    
+            function closePopup(popupId) {
+                document.getElementById(popupId).classList.remove('active');
+            }
+        </script>
 </body>
 </html>

@@ -30,7 +30,9 @@ async function submitRegisterForm(event) {
         };
         await addUser(newUser);
 
+        showPopup('registerSuccessPopup');
         alert('User registered successfully!');
+        
     } catch (error) {
         console.error('Error registering user:', error);
         alert('Error registering user: ' + error.message);
@@ -56,6 +58,7 @@ async function submitLoginForm(event) {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', userName);
 
+            showPopup('loginSuccessPopup');
             alert('User logged in successfully!');
             window.location.href = '../index.html';
         } else {
@@ -76,7 +79,7 @@ function logOutUser(){
         localStorage.removeItem('userName');
 
         alert('User logged out successfully!');
-        window.location.href = 'index.html';
+        window.location.href = 'users/user_sign.html';
     }).catch((error) => {
         console.error('Error logging out user:', error);
         alert('Error logging out user: ' + error.message);
