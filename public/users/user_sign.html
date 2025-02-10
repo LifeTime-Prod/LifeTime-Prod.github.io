@@ -111,16 +111,34 @@
                 </div>
             </div>   
         </div>
-    
-        <script>
-            function showPopup(popupId) {
-                console.log(popupId);
-                document.getElementById(popupId).classList.add('active');
-            }
-    
-            function closePopup(popupId) {
-                document.getElementById(popupId).classList.remove('active');
-            }
-        </script>
+        <!-- Login Error Popup -->
+        <div class="popup-overlay" id="loginErrorPopup">
+            <div class="popup-container">
+                <div class="right">
+                    <div class="skip-button" onclick="closePopup('loginErrorPopup')">x</div>
+                    <p class="logo">LifeTime</p>
+                    <h2 class="popup-heading">Login Error</h2>
+                    <p class="description" id="loginErrorMessage">
+                        An error occurred during login.
+                    </p>
+                    <a href="#" class="getstarted" onclick="closePopup('loginErrorPopup')">Try Again</a>
+                </div>
+            </div>   
+        </div>
+
+        <!-- Register Error Popup -->
+        <div class="popup-overlay" id="registerErrorPopup">
+            <div class="popup-container">
+                <div class="right">
+                    <div class="skip-button" onclick="closePopup('registerErrorPopup')">x</div>
+                    <p class="logo">LifeTime</p>
+                    <h2 class="popup-heading">Registration Error</h2>
+                    <p class="description" id="registerErrorMessage">
+                        An error occurred during registration.
+                    </p>
+                    <a href="#" class="getstarted" onclick="closePopup('registerErrorPopup')">Try Again</a>
+                </div>
+            </div>   
+        </div>
 </body>
 </html>

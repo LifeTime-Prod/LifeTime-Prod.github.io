@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LifeTime</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/current-week.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script type="module" src="../js/firebase_init.js"></script>
+<script type="module" src="../controller/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="controller/gemini-controller.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar-container"><br>
+        <div class="sidebar-logo">
+            <h1>LifeTime</h1>
+        </div>
+        <div class="sidebar-items">
+            <button class="dropdown-btn">
+                <span class="burger-icon">&#9776;Menu</span> 
+            </button>
+            <div class="dropdown-content sidebar-items">
+                <a href="../users/user_sign.html" class="sidebar-item choose-create-user" style="position: relative;">Register/Login</a>
+                <a href="../index.html" class="sidebar-item">Home</a> 
+                <a href="../schedule/schedule.html" class="sidebar-item">Schedule</a> 
+                <a href="../activity_list/activities.html" class="sidebar-item">Activity List</a> 
+                <a href="../performance/performance.html" class="sidebar-item">Performance</a> 
+                <a href="#" class="sidebar-item">Monthly Review</a> 
+                <a href="../life_overview/life-overview.html" class="sidebar-item">Life Overview</a>
+                <div id="logoutPlaceholder"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+
+    </div>
+</div>
+
+</body>
+</html>

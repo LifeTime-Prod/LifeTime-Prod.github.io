@@ -31,11 +31,13 @@ async function submitRegisterForm(event) {
         await addUser(newUser);
 
         showPopup('registerSuccessPopup');
-        alert('User registered successfully!');
+        // alert('User registered successfully!');
         
     } catch (error) {
         console.error('Error registering user:', error);
-        alert('Error registering user: ' + error.message);
+        // alert('Error registering user: ' + error.message);
+        document.getElementById('registerErrorMessage').textContent = error.message;
+        showPopup('registerErrorPopup');
     }
 }
 
@@ -58,17 +60,37 @@ async function submitLoginForm(event) {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', userName);
 
-            showPopup('loginSuccessPopup');
-            alert('User logged in successfully!');
+            await new Promise((resolve) => {
+                showPopup('loginSuccessPopup');
+                
+                // Add event listener to the close button
+                const closeButton = document.querySelector('#loginSuccessPopup .skip-button');
+                closeButton.addEventListener('click', () => {
+                    closePopup('loginSuccessPopup');
+                    resolve();
+                });
+
+                // Add event listener to the "Go to Dashboard" button
+                const dashboardButton = document.querySelector('#loginSuccessPopup .getstarted');
+                dashboardButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closePopup('loginSuccessPopup');
+                    resolve();
+                });
+            });
+            
+            // alert('User logged in successfully!');
+
             window.location.href = '../index.html';
         } else {
             console.log("No user data found");
-            alert('No user data found');
+            showPopup('loginErrorPopup');
         }
 
     } catch (error) {
         console.error('Error logging in user:', error);
-        alert('Error logging in user: ' + error.message);
+        document.getElementById('loginErrorMessage').textContent = error.message;
+        showPopup('loginErrorPopup');
     }
 }
 
@@ -78,8 +100,8 @@ function logOutUser(){
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userName');
 
-        alert('User logged out successfully!');
-        window.location.href = 'users/user_sign.html';
+        // alert('User logged out successfully!');
+        window.location.href = '../users/user_sign.html';
     }).catch((error) => {
         console.error('Error logging out user:', error);
         alert('Error logging out user: ' + error.message);
@@ -104,6 +126,13 @@ async function fetchAllUsersData() {
     }
 }
 
+function showPopup(popupId) {
+    document.getElementById(popupId).classList.add('active');
+}
+
+function closePopup(popupId) {
+    document.getElementById(popupId).classList.remove('active');
+}
 
 document.getElementById('registerForm').addEventListener('submit', submitRegisterForm);
 document.getElementById('loginForm').addEventListener('submit', submitLoginForm);

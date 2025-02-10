@@ -141,5 +141,19 @@ body{
 /* Mobile */
 
 @media screen and (max-width: 480px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .form-container{
+    width: 100%;
+  }
+
+  .form{
+    min-width: 50vw;
+  }
 
 }

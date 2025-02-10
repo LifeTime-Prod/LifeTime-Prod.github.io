@@ -1,6 +1,8 @@
 html {
     margin: 0;
     padding: 0;
+    overflow-x: initial !important;
+    overflow-y: initial !important;
 }
 
 body {
@@ -80,7 +82,7 @@ body {
 /* Main */
 
 .main-container {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 0 2em;
@@ -92,13 +94,17 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
     width: 100%;
 }
 
 .week-schedule {
     display: flex;
     flex-direction: row;
+    width: 100%;
     align-items: center;
+    padding: 1em;
     margin: 1rem 0;
     overflow-x: auto;
 }
@@ -281,6 +287,10 @@ body {
     .main-container{
         width: 100%;
     }
+
+    .week-schedule{
+        overflow-x: auto;
+    }
 }
 
 /* Special */
@@ -421,6 +431,10 @@ body {
     .main-container{
         width: 100%;
     }
+
+    .week-schedule{
+        overflow-x: auto;
+    }
 }
 
 
@@ -556,6 +570,10 @@ body {
 
     .main-container{
         width: 100%;
+    }
+    
+    .week-schedule{
+        overflow-x: auto;
     }
 }
 
